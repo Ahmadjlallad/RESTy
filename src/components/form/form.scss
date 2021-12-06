@@ -2,23 +2,43 @@ $backgroundColor: #efefef;
 $radius: 40%;
 
 form {
-  display: inline-block;
   margin: auto;
-  width: 200px;
-  border: solid 1px #ccc;
-  label {
+  width: 28rem !important;
+  .url {
+    width: 100%;
+    margin-bottom: 1rem;
+    input {
+      border-radius: 4px;
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      &:focus {
+        outline: none;
+        border-color: #000;
+      }
+    }
+    button {
+      color: #ff0000;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+  }
+  .methodsContainer {
     display: flex;
     margin: 1rem 0;
+    flex-direction: row;
 
     &.methods {
+      .active {
+        background-color: rgb(212, 67, 67);
+      }
       span {
         cursor: pointer;
         margin-right: 1rem;
         padding: 0.25rem 0.5rem;
         background: green;
 
-        &:hover,
-        &.active {
+        &:hover {
           background: rgb(97, 170, 97);
         }
       }

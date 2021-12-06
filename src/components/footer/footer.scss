@@ -1,4 +1,4 @@
-$backgroundColor: #1c2128;
+$backgroundColor: #cd3e3e;
 $colorFont: #fff;
 footer {
   padding: 1rem 0;
@@ -8,7 +8,7 @@ footer {
   font-size: 0.8rem;
   color: #666;
 
-  background: darken($backgroundColor, 50);
+  background: $backgroundColor;
   border-top: 1px solid #eee;
   padding: 1em 3em;
   margin: 0;

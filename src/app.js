@@ -8,28 +8,27 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Form from "./components/form";
 import Results from "./components/results";
+import axios from "axios";
 
 function App() {
   const [state, setState] = React.useState({
     data: null,
-    requestParams: {},
+    requestParams: {
+      method: "get",
+    },
   });
-  const callApi = (requestParams) => {
-    // mock output
-    const data = {
-      count: 2,
-      results: [
-        { name: "fake thing 1", url: "http://fakethings.com/1" },
-        { name: "fake thing 2", url: "http://fakethings.com/2" },
-      ],
-    };
+  const callApi = async (requestParams) => {
+    const data = await axios[requestParams.method](requestParams.url);
+    console.log(data);
     setState({ data, requestParams });
   };
 
   return (
     <React.Fragment>
       <Header />
-      <div>Request Method: {state.requestParams.method}</div>
+      <div data-testid="method">
+        Request Method: {state.requestParams.method}
+      </div>
       <div>URL: {state.requestParams.url}</div>
       <Form handleApiCall={callApi} />
       <Results data={state.data} />

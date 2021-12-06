@@ -1,7 +1,7 @@
-$backgroundColor: #1c2128;
+$backgroundColor: #cd3e3e;
 $colorFont: #fff;
 header {
-  background: darken($backgroundColor, 75);
+  background: $backgroundColor;
   border-bottom: 1px solid #eee;
   color: #eee;
   padding: 0;
