@@ -10,11 +10,20 @@ body {
 body {
   background: $backgroundColor;
   height: 100%;
-
+  #root * {
+    box-sizing: border-box;
+    width: 100%;
+  }
   #root {
     color: $colorFont;
     display: flex;
     flex-direction: column;
+    align-items: center;
+
     height: 100%;
+  }
+  #root * {
+    box-sizing: border-box;
+    width: 100%;
   }
 }
