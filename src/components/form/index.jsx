@@ -10,6 +10,9 @@ function Form({ handleApiCall }) {
     const formData = {
       method,
       url: e.target.url.value,
+      body: e.target.myTextArea.value
+        ? JSON.parse(e.target.myTextArea.value)
+        : {},
     };
     handleApiCall(formData);
   };
@@ -43,6 +46,7 @@ function Form({ handleApiCall }) {
           DELETE
         </span>
       </label>
+      <textarea id="textarea" name="myTextArea" rows="4" cols="50" />
     </form>
   );
 }

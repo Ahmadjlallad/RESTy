@@ -1,5 +1,5 @@
 $backgroundColor: #1c2128;
-$colorFont: #fff;
+$colorFont: #1c2128;
 html,
 body {
   height: 100%;
@@ -10,10 +10,7 @@ body {
 body {
   background: $backgroundColor;
   height: 100%;
-  #root * {
-    box-sizing: border-box;
-    width: 100%;
-  }
+
   #root {
     color: $colorFont;
     display: flex;
@@ -21,9 +18,5 @@ body {
     align-items: center;
 
     height: 100%;
-  }
-  #root * {
-    box-sizing: border-box;
-    width: 100%;
   }
 }
