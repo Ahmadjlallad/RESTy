@@ -11,27 +11,37 @@ import Results from "./components/results";
 import axios from "axios";
 
 function App() {
-  const [state, setState] = React.useState({
+  const [apiData, setApiData] = React.useState({
     data: null,
-    requestParams: {
-      method: "get",
-    },
   });
-  const callApi = async (requestParams) => {
-    const data = await axios[requestParams.method](requestParams.url);
-    console.log(data);
-    setState({ data, requestParams });
+  const [{ url, method, body }, setRequestParams] = React.useState({
+    method: "get",
+    url: "",
+    body: {},
+  });
+  const callApi = async (requestParams = null) => {
+    try {
+      if (requestParams.url === "") return;
+      const data = await axios[requestParams.method](requestParams.url, body);
+      console.log(data);
+      setApiData({ data });
+    } catch (error) {
+      setApiData({ error });
+    }
   };
-
+  React.useEffect(() => {
+    console.log(body);
+    (async () => {
+      await callApi({ url, method, body });
+    })();
+  }, [url, method, body]);
   return (
     <React.Fragment>
       <Header />
-      <div data-testid="method">
-        Request Method: {state.requestParams.method}
-      </div>
-      <div>URL: {state.requestParams.url}</div>
-      <Form handleApiCall={callApi} />
-      <Results data={state.data} />
+      <div data-testid="method">Request Method: {method}</div>
+      <div>URL: {url}</div>
+      <Form handleApiCall={setRequestParams} />
+      <Results data={apiData} />
       <Footer />
     </React.Fragment>
   );

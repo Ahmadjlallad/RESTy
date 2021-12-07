@@ -1,4 +1,3 @@
-import react from "react";
 const color = ["#8757ad", "#f9c74f", "#f9a65a", "#6c9ef8", "#dd4444"];
 
 export default (json) => {
