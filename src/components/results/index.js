@@ -1,14 +1,26 @@
 import React from "react";
 import "./result.scss";
 import ReactJson from "react-json-view";
-
+import MyDrawer from "../rSuite/Drower";
 // use the component in your app!
-
-function Results({ data }) {
+import { Grid, Row, Col } from "rsuite";
+function Results({ data, dataFromLocalSt, getUrlDispatcher }) {
   return (
-    <div className="result">
-      <ReactJson src={data} theme="monokai" />
-    </div>
+    <Grid>
+      <Row className="show-grid">
+        <Col xs={12}>
+          {dataFromLocalSt ? (
+            <MyDrawer
+              dataFromLocalSt={dataFromLocalSt}
+              getUrlDispatcher={getUrlDispatcher}
+            />
+          ) : null}
+        </Col>
+        <Col xs={12}>
+          <ReactJson src={data} theme="monokai" />
+        </Col>
+      </Row>
+    </Grid>
   );
 }
 
