@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Button } from "rsuite";
 
 import "./form.scss";
 
-function Form({ handleApiCall }) {
+function Form({ dispatcher, selectedUrl }) {
   const isActive = (id, elementId) => (id === elementId ? "active" : "");
   const [method, setMethod] = React.useState("get");
+  const [url, setUrl] = React.useState(selectedUrl);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
@@ -14,13 +16,23 @@ function Form({ handleApiCall }) {
         ? JSON.parse(e.target.myTextArea.value)
         : {},
     };
-    handleApiCall(formData);
+    dispatcher({ type: "updateRequest", payload: formData });
   };
+  React.useEffect(() => {
+    setUrl(selectedUrl.url);
+  }, [selectedUrl]);
+  console.log(selectedUrl.url);
   return (
     <form onSubmit={handleSubmit}>
       <label className="url">
         <div>URL: </div>
-        <input name="url" type="text" />
+        <input
+          name="url"
+          type="text"
+          required
+          onChange={(e) => setUrl(e.target.value)}
+          value={url}
+        />
         <button data-testid="url" type="submit">
           GO!
         </button>
@@ -33,18 +45,41 @@ function Form({ handleApiCall }) {
           }
         }}
       >
-        <span className={isActive(method, "get")} id="get">
+        <Button color="orange" appearance="primary">
+          Orange
+        </Button>
+        <Button
+          color="orange"
+          appearance="primary"
+          className={isActive(method, "get")}
+          id="get"
+        >
           GET
-        </span>
-        <span className={isActive(method, "post")} id="post">
+        </Button>
+        <Button
+          color="orange"
+          appearance="primary"
+          className={isActive(method, "post")}
+          id="post"
+        >
           POST
-        </span>
-        <span className={isActive(method, "put")} id="put">
+        </Button>
+        <Button
+          color="orange"
+          appearance="primary"
+          className={isActive(method, "put")}
+          id="put"
+        >
           PUT
-        </span>
-        <span className={isActive(method, "delete")} id="delete">
+        </Button>
+        <Button
+          color="orange"
+          appearance="primary"
+          className={isActive(method, "delete")}
+          id="delete"
+        >
           DELETE
-        </span>
+        </Button>
       </label>
       <textarea id="textarea" name="myTextArea" rows="4" cols="50" />
     </form>
